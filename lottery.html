@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lottery Simulator</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="lotteryStyle.css" />
+  </head>
+  <style>
+    body {
+      background-image: url("lottery-background.jpg");
+    }
+    h1,
+    .lotteryResult {
+      color: #000;
+      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+      text-align: center;
+      background-color: white;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 25px;
+    }
+
+    .align {
+      display: inline-block;
+      text-align: left;
+    }
+  </style>
+  <body>
+    <h1>Lottery Simulator</h1>
+    <div class="lotteryResult">
+      <div class="align">
+        <script language="javascript">
+          let nums = "";
+          let numbers = prompt("Enter winning numbers", "10 11 17 27 32").split(
+            " "
+          );
+          for (n = 0; n < 5; n++) {
+            numbers[n] = parseInt(numbers[n]);
+            nums = nums + numbers[n] + " ";
+          }
+          numbers = numbers.sort();
+          let lucky = prompt("Enter numbers", 15);
+
+          let rand = "";
+          let arr = [];
+          for (n = 0; n < 5; n++) {
+            arr.push(Math.floor(Math.random() * 48) + 1);
+            rand = rand + arr[n] + " ";
+          }
+          arr = arr.sort();
+          let luck = Math.floor(Math.random() * 18) + 1;
+          let randSorted = "";
+          for (n = 0; n < 5; n++) randSorted = randSorted + arr[n] + " ";
+
+          document.write("Random Pick: " + rand + "lucky " + luck);
+
+          document.write("<br>");
+
+          document.write("Pick sorted: " + randSorted + "lucky " + luck);
+
+          document.write("<br>");
+
+          document.write("Winning numbers sorted: " + nums + "lucky " + lucky);
+
+          document.write("<br>");
+
+          let match = 0;
+          for (n = 0; n < 5; n++) {
+            for (m = 0; m < 5; m++) {
+              if (numbers[n] == arr[m]) {
+                match = match + 1;
+                break;
+              }
+            }
+          }
+          document.write("Number matching: " + match);
+
+          document.write("<br>");
+
+          let matchLucky = false;
+          if (lucky == luck) {
+            matchLucky = true;
+            document.write("Lucky ball matches");
+          } else {
+            document.write("Lucky ball does not match");
+          }
+
+          document.write("<br>");
+
+          let money = "";
+          if (matchLucky == true && match == 5) {
+            money = "7,000 a WEEK for LIFE";
+          } else if (match == 5) {
+            money = "25,000 a YEAR for LIFE";
+          } else if (matchLucky == true && match == 4) {
+            money = "5,000";
+          } else if (match == 4) {
+            money = "200";
+          } else if (matchLucky == true && match == 3) {
+            money = "150";
+          } else if (match == 3) {
+            money = "20";
+          } else if (matchLucky == true && match == 2) {
+            money = "25";
+          } else if (match == 2) {
+            money = "3";
+          } else if (matchLucky == true && match == 1) {
+            money = "6";
+          } else if (matchLucky == true && match == 0) {
+            money = "4";
+          } else {
+            money = "0";
+          }
+          document.write("Your winnings: $" + money);
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
